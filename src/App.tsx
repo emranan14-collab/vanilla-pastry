@@ -15,6 +15,8 @@ export default function App() {
   const [lang, setLang] = useState<Language>('fa');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeProductIndex, setActiveProductIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   const t = content[lang];
   const isRtl = lang === 'fa';
@@ -36,13 +38,31 @@ export default function App() {
     { label: t.nav.reviews, id: 'reviews' },
     { label: t.nav.contact, id: 'contact' },
   ];
-
-  const nextProduct = () => {
+const nextProduct = () => {
     setActiveProductIndex((prev) => (prev + 1) % products[lang].length);
   };
-
   const prevProduct = () => {
     setActiveProductIndex((prev) => (prev - 1 + products[lang].length) % products[lang].length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+    const distance = touchStartX - touchEndX;
+    if (Math.abs(distance) < 50) return;
+    if (distance > 0) {
+      isRtl ? prevProduct() : nextProduct();
+    } else {
+      isRtl ? nextProduct() : prevProduct();
+    }
   };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -265,11 +285,14 @@ export default function App() {
             </motion.button>
           </div>
 
-          {/* FIX: removed overflow-visible which was causing horizontal scroll on mobile */}
+        {/* FIX: removed overflow-visible which was causing horizontal scroll on mobile */}
           <div className="overflow-hidden mt-10">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={activeProductIndex}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
                 initial={{ opacity: 0, x: isRtl ? 150 : -150, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: isRtl ? -150 : 150, scale: 0.9 }}
