@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #D4AF37;
+  --color-gold-light: #F9F295;
+  --color-gold-dark: #B8860B;
+  
+  --font-vazir: "Vazirmatn", sans-serif;
+}
+
+@utility bg-gold-gradient {
+  background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #F9F295 100%);
+}
+
+@utility text-gold-gradient {
+  background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #F9F295 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility border-gold-gradient {
+  border-image: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #F9F295 100%) 1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Vazirmatn:wght@400;500;700&display=swap');
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+.rtl {
+  direction: rtl;
+  font-family: var(--font-vazir);
+}
+
+.ltr {
+  direction: ltr;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom scrollbar for gold theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gold rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold-dark;
+}
