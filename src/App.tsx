@@ -177,7 +177,7 @@ export default function App() {
             alt="Pastry background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/30 to-white/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/50 to-white/80"></div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl">
