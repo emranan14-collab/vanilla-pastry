@@ -177,7 +177,7 @@ export default function App() {
             alt="Pastry background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/50 to-white/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/30 to-white/50"></div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl">
@@ -186,7 +186,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-gold-gradient mb-6 pb-6"
+            className="text-5xl md:text-7xl font-bold text-white mb-6 pb-6"
           >
             {t.hero.title}
           </motion.h1>
@@ -195,7 +195,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-2xl md:text-4xl text-yellow-500 mb-10"
+            className="text-2xl md:text-4xl text-white mb-10"
           >
             {t.hero.subtitle}
           </motion.p>
