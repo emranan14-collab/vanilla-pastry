@@ -9,7 +9,7 @@ import { Cake, X, Globe, Star, Phone, Mail, MapPin, Instagram, Facebook, Chevron
 import { Language } from './types';
 import { content, products, reviews } from './constants';
 import logo from './images/vanilla-pastry-logo.png';
-import heroImage from './images/hero-image.png';
+import heroImage from './images/hero-image.jpg';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('fa');
